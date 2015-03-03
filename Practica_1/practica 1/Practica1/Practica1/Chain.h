@@ -14,8 +14,8 @@ public:
 
 	//constructors
 	Chain();
-	Chain(const char* format);
-	Chain(const Chain& str);
+	Chain(const char* format,...);
+	Chain(Chain& str);
 
 	//destructor
 	~Chain();
@@ -28,12 +28,14 @@ public:
 	bool operator != (const Chain& str);
 	
 	Chain operator = (const char* a);
-	Chain operator = (const Chain& str);
+	Chain operator = (Chain& str);
 	
 	Chain operator += (const char* a);
-	Chain operator += (const Chain& str);
+	Chain operator += (Chain& str);
 
 	//other methods
+
+	void alloc(int n);
 
 	const int Length();
 

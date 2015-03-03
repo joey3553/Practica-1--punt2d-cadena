@@ -4,11 +4,11 @@
 
 //constructors
 Chain::Chain(){
-	size = 1;
+	alloc(1);
 	c = "\0";
 }
 
-Chain::Chain(const char* format){
+Chain::Chain(const char* format,...){
 	size = 0;
 
 	if (format != NULL)
@@ -34,14 +34,9 @@ Chain::Chain(const char* format){
 	}
 }
 
-Chain::Chain(const Chain& str){
-	if (str.size != 0){
-		size = str.size + 1;
-		c = str.c;
-	}
-	else{
-		Clear();
-	}
+Chain::Chain(Chain& str){
+	alloc(str.Length() + 1);
+	strcpy_s(c, size, str.GetString());
 }
 
 //destructor
@@ -71,34 +66,26 @@ bool Chain::operator != (const char* a){
 
 
 bool Chain::operator == (const Chain& str){
-	if (str.size != 0)
-		return strcmp(c, str.c) == 0;
-	if (str.size == 0 && size == 0 ){
-			return true;
-		}
-		else{
-			return false;
-		}
+	if (str.size != NULL)
+	{
+		if (size == str.size) return strcmp(c, str.c) == 0;
+	}
+	return false;
 }
 
 bool Chain::operator != (const Chain& str){
-	if (str.size != 0){
+	if (str.size != NULL)
+	{
 		return strcmp(c, str.c) != 0;
 	}
-	else if (str.size == 0 && size == 0){
-			return false;
-		}
-	else{
-			return true;
-		}
+	return true;
 	
 }
 
 
 Chain Chain::operator = (const char* a){
 	if (a != NULL){
-		size = strlen(a);
-		c = new char[size];
+		alloc(strlen(a));
 		strcpy_s(c, size, a);
 	}
 	else{
@@ -107,9 +94,9 @@ Chain Chain::operator = (const char* a){
 	return c;
 }
 
-Chain Chain::operator = (const Chain& str){
+Chain Chain::operator = (Chain& str){
 	if (str.size != 0){
-		size = str.size + 1;
+		alloc(str.Length());
 		strcpy_s(c, size, str.c);
 	}
 	else{
@@ -131,9 +118,9 @@ Chain Chain::operator += (const char* a){
 	}
 }
 
-Chain Chain::operator += (const Chain& str){
+Chain Chain::operator += (Chain& str){
 	if (str.size != 0){
-		size += strlen(str.c) + 1;
+		size += str.Length() + 1;
 		strcat_s(c, size, str.c);
 		return c;
 	}
@@ -144,15 +131,22 @@ Chain Chain::operator += (const Chain& str){
 
 //other methods
 
+void Chain::alloc(int n){
+	size = n;
+	c = new char[size];
+}
+
 const int Chain::Length(){
 	return strlen(c);
 }
 
 const int Chain::Capacity(){
-	return size
+	return size;
 }
 
-char* Chain::GetString(){ return 0; }
+char* Chain::GetString(){ 
+	return c;
+}
 
 void Chain::Clear(){
 	delete[] c;

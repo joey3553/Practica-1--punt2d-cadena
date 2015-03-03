@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Practica1", "Practica1\Practica1.vcxproj", "{D7685AA2-18FA-4E01-8BE0-602E51A2ED34}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Practica1", "H:\programació 2\practica 1\Practica1\Practica1\Practica1.vcxproj", "{D7685AA2-18FA-4E01-8BE0-602E51A2ED34}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UnitTest1", "UnitTest1\UnitTest1.vcxproj", "{D4AD5B25-840B-45C0-A221-A9872BEE5330}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Point2Dtest", "H:\programació 2\practica 1\Practica1\UnitTest1\UnitTest1.vcxproj", "{D4AD5B25-840B-45C0-A221-A9872BEE5330}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
